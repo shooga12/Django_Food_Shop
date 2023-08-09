@@ -1,0 +1,25 @@
+{% extends 'food/base.html' %}
+{% block body %}
+
+<form action="" method="GET">
+    <input type="search" name="item_name">
+    <button type="submit">Search</button>
+</form>
+
+{% for item in item_objects %}
+    {{ item.item_name }}
+</br>
+{% endfor %}
+
+{% if item_objects.has_previous %}
+    <a href="?page=1">First</a>
+    <a href="?page= {{ item_objects.previous_page_number }}">Previous</a>
+{% endif %}
+
+Page: {{ item_objects.number }} of {{ item_objects.paginator.num_pages }}
+
+{% if item_objects.has_next %}
+    <a href="?page= {{ item_objects.next_page_number }}">Next</a>
+    <a href="?page= {{ item_objects.paginator.num_pages }}">Last</a>
+{% endif %}
+{% endblock %}
